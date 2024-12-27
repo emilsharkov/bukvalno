@@ -21,7 +21,6 @@ impl Config {
 
     fn get_command() -> Command {
         Command::new("bukvalno")
-            .version("1.0")
             .author("Emil Sharkov <emosharkov@gmail.com>")
             .about("Image to ASCII Art Generator")
             .arg(
@@ -37,7 +36,7 @@ impl Config {
                     .short('s')
                     .long("scale")
                     .value_name("SCALE")
-                    .help("Sets the scale down factor for the ASCII art")
+                    .help("Sets the scale down factor")
                     .default_value("1.0"),
             )
             .arg(
@@ -45,7 +44,7 @@ impl Config {
                     .short('c')
                     .long("charset")
                     .value_name("CHARSET")
-                    .help("Sets the charset to use for the ASCII art")
+                    .help("Sets the charset ie. english, chinese, japanese, braille, circles, blocks")
                     .default_value("english"),
             )
             .arg(

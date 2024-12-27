@@ -1,7 +1,12 @@
 [package]
 name = "bukvalno"
 version = "0.1.0"
-edition = "2021"
+edition = '2021'
+description = "A cli tool for converting images to ascii art"
+readme = "README.md"
+repository = "https://github.com/emilsharkov/bukvalno"
+license = "MIT"
+keywords = ["ascii","art","image"]
 
 [dependencies]
 clap = "4.5.23"

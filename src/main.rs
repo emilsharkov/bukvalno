@@ -1,4 +1,4 @@
-use bukvalno::{generate_ascii_art, cli::Config};
+use bukvalno::{ascii::generate_ascii_art, cli::Config};
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {

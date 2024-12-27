@@ -1,9 +1,11 @@
 # bukvalno
 
+## Usage
+
 ```
 Image to ASCII Art Generator
 
-Usage: bukvalno.exe [OPTIONS] --file <FILE>
+Usage: bukvalno [OPTIONS] --file <FILE>
 
 Options:
   -f, --file <FILE>        Sets the input image file
@@ -13,7 +15,8 @@ Options:
   -h, --help               Print help
 ```
 
-> [!WARNING]
+## Installation
+
 > You must have `~/.cargo/bin/` in your `PATH` to run `bukvalno`
 > directly.
 
@@ -21,3 +24,19 @@ Options:
 cargo install bukvalno
 ```
 
+## My Favorites
+
+### Capybara
+![Capybara](examples/capybara.png)
+
+### Christ the Consoler by Carl Bloch
+![Christ the Consoler by Carl Bloch](examples/christ.png)
+
+### The Sacred Heart of Jesus
+![The Sacred Heart of Jesus](examples/jesus.png)
+
+### Smiling Dog
+![Smiling Dog](examples/dawg.png)
+
+### Watermelon Cat
+![Watermelon Cat](examples/cat.png)

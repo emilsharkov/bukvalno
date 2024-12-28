@@ -1,13 +1,13 @@
 use clap::{Arg, Command};
 use std::error::Error;
 
-use crate::charsets::from_str;
+use crate::charsets;
 
 #[derive(Debug)]
 pub struct Config {
     pub filename: String,
     pub scale: f32,
-    pub charset: String,
+    pub charset_label: String,
     pub invert: bool,
 }
 
@@ -69,7 +69,7 @@ impl Config {
             .ok_or("Scale has a default value")?
             .parse::<f32>()
             .map_err(|_| "Scale must be a valid number")?;
-        let charset = matches
+        let charset_label = matches
             .get_one::<String>("charset")
             .ok_or("Charset has a default value")?
             .to_string();
@@ -82,15 +82,14 @@ impl Config {
         Ok(Self {
             filename,
             scale,
-            charset,
+            charset_label,
             invert,
         })
     }
 
     fn validate_args(&mut self) -> Result<(), Box<dyn Error>> {
         Self::validate_scale(self.scale)?;
-        Self::validate_charset(&self.charset)?;
-        self.charset = from_str(&self.charset).unwrap().to_string();
+        Self::validate_charset(&self.charset_label)?;
         Ok(())
     }
 
@@ -102,7 +101,7 @@ impl Config {
     }
 
     fn validate_charset(charset: &str) -> Result<(), Box<dyn Error>> {
-        if crate::charsets::from_str(charset).is_none() {
+        if charsets::get_charset_from_label(charset).is_none() {
             return Err(format!("Invalid charset: {}", charset).into());
         }
         Ok(())

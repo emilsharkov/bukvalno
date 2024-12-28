@@ -1,11 +1,12 @@
 use image::ImageReader;
 use std::error::Error;
-use crate::{cli::Config, constants::{CHAR_HEIGHT_TO_WIDTH_RATIO, MAX_RGB_VALUE}, utils::resize_img};
+use crate::{charsets, cli, constants::{CHAR_HEIGHT_TO_WIDTH_RATIO, MAX_RGB_VALUE}, utils::resize_img};
 
-pub fn generate_ascii_art(config: &Config) -> Result<String, Box<dyn Error>> {
-    let Config {filename, scale, charset, invert} = config;
+pub fn generate_ascii_art(config: &cli::Config) -> Result<String, Box<dyn Error>> {
+    let cli::Config {filename, scale, charset_label, invert} = config;
 
-    let charset: Vec<char> = if *invert { 
+    let charset = charsets::get_charset_from_label(&charset_label).unwrap().to_string();
+    let ordered_charset: Vec<char> = if *invert { 
         charset.chars().rev().collect() 
     } else { 
         charset.chars().collect() 
@@ -21,8 +22,8 @@ pub fn generate_ascii_art(config: &Config) -> Result<String, Box<dyn Error>> {
         let mut line = String::new();
         for pixel in row {
             let gray_average = (pixel[0] as f32 + pixel[1] as f32 + pixel[2] as f32) / 3.0;
-            let ascii_index = ((gray_average / MAX_RGB_VALUE) * (charset.len() - 1) as f32) as u8;
-            let ascii_char = charset.get(ascii_index as usize).unwrap();
+            let ascii_index = ((gray_average / MAX_RGB_VALUE) * (ordered_charset.len() - 1) as f32) as u8;
+            let ascii_char = ordered_charset.get(ascii_index as usize).unwrap();
             line.push(*ascii_char);
         }
         line.push('\n');

@@ -1,6 +1,6 @@
 use crate::constants;
 
-pub fn from_str(s: &str) -> Option<&str> {
+pub fn get_charset_from_label(s: &str) -> Option<&str> {
     match s {
         "english" => Some(constants::ENGLISH),
         "chinese" => Some(constants::CHINESE),

@@ -6,9 +6,12 @@ description = "A cli tool for converting images to ascii art"
 readme = "README.md"
 repository = "https://github.com/emilsharkov/bukvalno"
 license = "MIT"
-license-file = "LICENSE.txt"
+license-file = "LICENSE.md"
 keywords = ["ascii","art","image"]
 
 [dependencies]
 clap = "4.5.23"
 image = "0.25.5"
+
+[profile.release]
+lto = true
